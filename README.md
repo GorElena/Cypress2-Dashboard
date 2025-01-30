@@ -1,33 +1,48 @@
-name: Cypress Tests
-on: [push]
-jobs:
-  cypress-run:
-    runs-on: ubuntu-latest
-    # Runs tests in parallel with matrix strategy https://docs.cypress.io/guides/guides/parallelization
-    # https://docs.github.com/en/actions/using-jobs/using-a-matrix-for-your-jobs
-    # Also see warning here https://github.com/cypress-io/github-action#parallel
-    strategy:
-      fail-fast: false # https://github.com/cypress-io/github-action/issues/48
-      matrix:
-        containers: [1, 2] # Uses 2 parallel instances
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Cypress run
-        # Uses the official Cypress GitHub action https://github.com/cypress-io/github-action
-        uses: cypress-io/github-action@v6
-        with:
-          # Starts web server for E2E tests - replace with your own server invocation
-          # https://docs.cypress.io/guides/continuous-integration/introduction#Boot-your-server
-          start: npm start
-          wait-on: 'http://localhost:3000' # Waits for above
-          # Records to Cypress Cloud 
-          # https://docs.cypress.io/guides/cloud/projects#Set-up-a-project-to-record
-          record: true
-          parallel: true # Runs test in parallel using settings above
-        env:
-          # For recording and parallelization to work you must set your CYPRESS_RECORD_KEY
-          # in GitHub repo → Settings → Secrets → Actions
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
-          # Creating a token https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+# Домашнее задание к занятию «7.7. Cypress 2»
+
+Любые вопросы по решению задач задавайте в чате учебной группы.
+
+Не забывайте про важные моменты, без которых работы не будут приниматься на проверку: 
+- корректное оформление репозиториев;
+- использование .gitignore;
+- форматирование кода.
+
+---
+
+  ## Задача 1. Cypress. Установка и настройка проекта
+
+ 1. Изучите [приложение](https://github.com/Evgeniy-Varlamov/FS21-diplom) для работы с бронирование билетов в кино.
+ 2. Приложение в процессе разработки, и многие функциональности ещё не готовы. Вы можете тестировать бронирование билетов, логин в админку.
+ 3. Создайте новый проект для тестов на Cypress.
+ 4. Создайте:
+ - spec-тест с тестами для проверки корректности отображения главной страницы;
+ - spec-тест для проверки логина в админку. Используйте фикстуру для хранения тестовых данных: минимум 2 набора — happy и sad path;
+ - spec-тест с UI-тестом для бронирования фильма в доступный зал, название которого вы получаете из админки.
+
+ 5. Сделайте рефакторинг кода так, чтобы данные обо всех селекторах хранились в фикстурах.
+ 6. Пришлите ссылку на репозиторий в качестве результата выполнения домашнего задания
+  
+  * Не забывайте заводить issue в случае отклонений в поведении системы как приложения, так и в реализации тестов. Если технически невозможно реализовать тест по какой-либо причине, то добавьте issue, оставьте тест падающим. Тест должен присутствовать.
+  
+  ## Задача 2. Подключение Dashboard
+  
+  1. Поключите ваш проект к Dashboard. Помните, что он будет иметь уникальные идентификаторы.
+  2. Запустите тесты так, чтобы результаты отображались на Dashboard.
+  3. Настройте публичный доступ к вашему проекту и пришлите ссылку на ваш Dashboard, как результат здания.
+
+  ## Задача 3. Интеграционные тесты
+  
+  1. Создайте новый проект с test suite (используйте `describe()`) с API-тестами для [проекта](https://petstore.swagger.io/#/).
+  
+  В вашем наборе должны быть тесты для проверки:
+  - создания пользователя;
+  - правки пользователя;
+  - удаления пользователя.
+
+  Тесты должны быть независимыми друг от друга и выполняться в любом порядке. Рекомендуем использовать кастомные команды, так как вам придётся повторять одни и те же предусловия для разных тестов.
+  
+  2. Поключите ваш проект к Dashboard. Помните, что он будет иметь уникальные идентификаторы.
+  3. Запустите тесты так, чтобы результаты отображались на Dashboard.
+  4. Настройте публичный доступ к вашему проекту и пришлите ссылку на ваш Dashboard, а также репозитарий с API тестами, как результат задания.
+  
+ **Важно: не забывайте про использование принципа DRY везде, где это необходимо.**
