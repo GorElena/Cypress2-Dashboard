@@ -1,3 +1,4 @@
+Подключен Cypress Cloud [Dashboard](https://cloud.cypress.io/projects/2xz3d2/runs?branches=%5B%5D&committers=%5B%5D&flaky=%5B%5D&page=1&status=%5B%5D&tags=%5B%5D&tagsMatch=ANY&timeRange=%7B%22startDate%22%3A%222024-02-01%22%2C%22endDate%22%3A%222025-01-31%22%7D)
 # Домашнее задание к занятию «7.7. Cypress 2»
 
 Любые вопросы по решению задач задавайте в чате учебной группы.
