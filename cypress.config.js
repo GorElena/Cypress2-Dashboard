@@ -1,7 +1,7 @@
 const { defineConfig } = require("cypress");
 
 module.exports = {
-  projectId: "iiey3f",
+  projectId: "2xz3d2",
   // ...rest of the Cypress project config
 
   e2e: {
